@@ -33,7 +33,7 @@ let
     ++ lib.optional withIde nixpkgs.clang-tools;
 
     depsTools = [
-      hspkgs.caball-install
+      hspkgs.cabal-install
     ];
 
     hsdrv = hspkgs.mkDerivation {
@@ -47,7 +47,11 @@ let
       packages = _: [ hsdrv ];
       buildInputs = depsSystem;
       nativeBuildInputs = depsTools;
-      passthru.pkgs = nixpkgs;
+
+      passthru = {
+        inherit hspkgs;
+        inherit nixpkgs;
+      };
     };
   in
   if isShell then hsshell else hsdrv;
