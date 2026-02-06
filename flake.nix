@@ -8,16 +8,20 @@
   , nixpkgs
   }:
   let
+    inherit (nixpkgs) lib;
+
     systems = [
       "x86_64-linux"
     ];
 
-    forAllSystems = nixpkgs.lib.genAttrs systems;
+    forAllSystems = lib.genAttrs systems;
   in
   {
+    inherit lib;
+
     getnix = forAllSystems (system: import ./get.nix {
       inherit system;
-      inherit (nixpkgs) lib;
+      inherit lib;
       nixpkgs = nixpkgs.legacyPackages.${system};
     });
   };
