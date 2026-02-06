@@ -1,6 +1,6 @@
 args@{
   system ? builtins.currentSystem
-, sources ? import ./sources.nix
+, sources ? import ./nix/sources.nix
 }:
 let
   nixpkgs = import sources.nixpkgs {
