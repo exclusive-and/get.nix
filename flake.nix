@@ -4,7 +4,8 @@
   };
 
   outputs = inputs@{
-    nixpkgs
+    self
+  , nixpkgs
   }:
   let
     systems = [
