@@ -57,5 +57,6 @@ let
   if isShell then hsshell else hsdrv;
 in
 {
+  inherit lib nixpkgs;
   inherit hspkgs buildHaskell;
 }
